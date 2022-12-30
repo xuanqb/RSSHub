@@ -71,30 +71,6 @@ jobs:
           # cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/rsshub:buildcache
           # cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/rsshub:buildcache,mode=max
 
-      - name: Extract Docker metadata (Chromium-bundled version)
-        id: meta-chromium-bundled
-        uses: docker/metadata-action@v4
-        with:
-          images: ${{ secrets.DOCKER_USERNAME }}/rsshub
-          tags: |
-            type=raw,value=chromium-bundled,enable=true
-            type=raw,value=chromium-bundled-{{date 'YYYY-MM-DD'}},enable=true
-          flavor: latest=false
-
-      - name: Build and push Docker image (Chromium-bundled version)
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          build-args: PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=0
-          push: true
-          tags: ${{ steps.meta-chromium-bundled.outputs.tags }}
-          labels: ${{ steps.meta-chromium-bundled.outputs.labels }}
-          platforms: linux/amd64,linux/arm/v7,linux/arm64
-          cache-from: |
-            type=registry,ref=${{ secrets.DOCKER_USERNAME }}/rsshub:chromium-bundled
-          # type=gha,scope=docker-release # not needed, Docker automatically uses local cache from the builder
-          # type=registry,ref=${{ secrets.DOCKER_USERNAME }}/rsshub:buildcache
-          cache-to: type=inline,ref=${{ secrets.DOCKER_USERNAME }}/rsshub:chromium-bundled  # inline cache is enough
 
   description:
     runs-on: ubuntu-latest
