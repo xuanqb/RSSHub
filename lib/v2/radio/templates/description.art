@@ -1,5 +1,0 @@
-<audio controls="controls">
-{{each streams stream}}
-<source src="{{ stream.url }}" type="audio/x-m4a">
-{{/each}}
-</audio>
