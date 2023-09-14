@@ -39,6 +39,7 @@
             {{ if $value.itunes_duration }}<itunes:duration>{{ $value.itunes_duration }}</itunes:duration> {{ /if }}
             {{ if $value.author }}<author><![CDATA[{{ $value.author }}]]></author>{{ /if }}
             {{ if $value.year }}<year>{{ $value.year }}</year>{{ /if }}
+            {{ if $value.type }}<type>{{ $value.type }}</type>{{ /if }}
             {{ if typeof $value.category === 'string' }}
             <category>{{ $value.category }}</category>
             {{ else }}
