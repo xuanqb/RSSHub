@@ -15,6 +15,7 @@
   },
   "license": "MIT",
   "author": "DIYgod",
+  "packageManager": "pnpm@9.15.9",
   "main": "lib/pkg.js",
   "files": [
     "lib"
